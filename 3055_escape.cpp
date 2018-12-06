@@ -45,12 +45,16 @@ void nextsec()
             }
         }
         while (ss--)
-        {
+        {   
             int a = S.front().first;
             int b = S.front().second;
-            if (arr[a + 1][b] == 'D' || arr[a][b + 1] == 'D' || arr[a - 1][b] == 'D' || arr[a][b - 1] == 'D')
-                res = sec;
             S.pop();
+            if (arr[a + 1][b] == 'D' || arr[a][b + 1] == 'D' || arr[a - 1][b] == 'D' || arr[a][b - 1] == 'D')
+            {
+                res = sec;
+                break;
+            }
+
             if (a + 1 >= 0 && b >= 0 && a + 1 < r && b < c && arr[a + 1][b] == '.')
             {
                 S.push(make_pair(a + 1, b));
