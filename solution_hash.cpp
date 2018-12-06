@@ -4,6 +4,8 @@
 #include <map>
 
 using namespace std;
+//hash map 
+//set
 
 string solution(vector<string> participant, vector<string> completion) {
     map<string,int> m;
