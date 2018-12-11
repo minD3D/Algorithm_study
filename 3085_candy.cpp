@@ -51,17 +51,9 @@ int countbig(int i, int j, vector<string> inarr){
         }
         else break;
         b++;
-    }
-    
+    }    
     int res = v>h ? v : h;
-    cout<<i<<","<<j<<":"<<inarr[i][j]<<res<<endl;
     mv= res>mv ? res : mv;
-}
-
-int swap (char a ,char b){
-    char tmp=a;
-    a=b;
-    b=tmp;
 }
 
 int main(){
