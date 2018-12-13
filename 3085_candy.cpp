@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
+using namespace std;    
 int n;
 
 vector<string> arr;
