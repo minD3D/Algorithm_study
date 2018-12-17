@@ -10,7 +10,6 @@ int isodd[32];
 vector<pair<int,int>> v;
 int res=100;
 bool checkdirect(){
-
     int cur=0;
     for(int i=1; i<=n; i++){
         cur=i;
@@ -42,6 +41,7 @@ void dfs(int i, int cnt){
         isodd[v[i].first]+=1;
         dfs(i+1,cnt+1);
     }
+    
     arr[v[i].first][v[i].second]=0;
     isodd[v[i].first]-=1;
     dfs(i+1,cnt);
