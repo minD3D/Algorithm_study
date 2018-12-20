@@ -25,7 +25,7 @@ int solution(vector<vector<int>> jobs) {
     int time=0;
 
     int cnt=0;
-    while(cnt!=init_size){
+    while(!jobs.empty()){
         for(int i=0; i<jobs.size(); i++){
             if(jobs[i][0]<=time)
                 temp.push(PS(jobs[i][0],jobs[i][1],i));
@@ -35,7 +35,7 @@ int solution(vector<vector<int>> jobs) {
         else{
             time+= temp.top().pt;
             total_time+= time-temp.top().st;
-            cnt++;
+            jobs.erase(jobs.begin()+ temp.top().index);
             while(!temp.empty())temp.pop();
         }
     }

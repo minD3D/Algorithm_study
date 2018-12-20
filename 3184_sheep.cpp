@@ -12,12 +12,13 @@ vector<pair<int,int>> t;
 int dr[4]={0,0,1,-1};
 int dc[4]={1,-1,0,0};
 int o=0, int v=0;
-void bfs(int tr, int tc){
+void bfs(int tr, int tc){j
     for(int i=0; i<4; i++){
         int nr=tr+dr[i];
         int nc=tr+dc[i];
         if(nr<r&&nc<c&&nr>=0&&nc>=0){
             if(arr[nr][nc]==1&&visit[nr][nc]!=1)
+            
         }
     }
 }

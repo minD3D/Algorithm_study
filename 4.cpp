@@ -37,9 +37,11 @@ int main(){
                 i++;
         }
         if(!iskeep)break;
+        
         iskeep=false;
         for(int i=0; i<arr.size(); i++){
             if(arr[i]!=maxh)
+                iskeep=true;
                 iskeep=true;
         }
         if(!iskeep)break;

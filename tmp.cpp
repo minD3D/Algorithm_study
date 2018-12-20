@@ -1,116 +1,61 @@
-#include <iostream>
-#include <utility>
+#include <string>
+#include <vector>
 #include <queue>
 #include <algorithm>
-#include <cstring>
-
+#include <iostream>
 using namespace std;
 
-int n, k;
-int alpha[30] = { 0, };   // 
-//int alpha_cnt[26] = { 0, };   // 각 알파벳이 몇개의 단어에 포함되었는지 카운트
-int visit[30];   // 알파벳을 배웠는지 여부
-int maxValue = 0;
-int allnum=0;
+struct Work {
+	int call_time;
+	int process_time;
+	int index;
+	Work(int x, int y, int i) : call_time(x), process_time(y), index(i) {} //구조체 생성자
+};
 
-vector <string> wordList;
-int alphaCnt[30];
-int alphaTypes[30];
-// a, n, t, i, c (5개) 는 항상 필요
+struct cmp {
+	bool operator()(Work a, Work b)
+	{
+		return a.process_time > b.process_time;
+	}
+}; // Work 비교연산자 정의
 
+int solution(vector<vector<int>> jobs) {
 
-int getScore() {
-	int sum = 0;
-	for (int i = 0; i < wordList.size(); i++) {
-		int idx = -1;
-		int flag = 0;
-		int tmp;
-		while (wordList[i][++idx] != '\0') {
-			tmp = wordList[i][idx];
-			if (visit[tmp - 'a'] != 1) {
-				flag = 1;
-				break;
+	int init_size = jobs.size();
+	int total_time = 0;
+	priority_queue<Work, vector<Work>, cmp> temp;
+	int time = 0;// 현재시점
+
+	while (!jobs.empty()) { //모든 일이 끝날 때까지
+		for (int i = 0; i < jobs.size(); i++)
+		{
+			if (jobs[i][0] <= time)
+				temp.push(Work(jobs[i][0], jobs[i][1], i));
+		}//현 시점에서 수행 가능한 일들을 모두 큐에 넣음
+
+		if (temp.size() == 0) // 수행 가능한 일이 없을 경우
+			time++;
+		else {              // 수행 가능한 일이 있을 경우
+			
+			cout<<temp.top().process_time<<endl;
+			time += temp.top().process_time; //현재 시간을 변경
+			total_time += time - temp.top().call_time; // 완료시간 - 요청시간을 더함
+			jobs.erase(jobs.begin() + temp.top().index);// 수행한 일을 벡터에서 제거함
+			while (!temp.empty()) {
+				temp.pop();
 			}
+			
 		}
-		if (flag == 0) sum++;
 	}
-	return sum;
-}
+	
 
-void dfs(int v, int d) {
-	visit[v] = 1;	// 방문
-    
-	if (d == k ) {
-        // for(int i=0;i<k;i++){
-        //     cout<<visit[i];
-        // }
-        // cout<<endl;
-		maxValue = max(getScore(), maxValue);
-		visit[v] = 0;
-		return;
-	}
+	int answer =  (int)((float)total_time/(float)init_size);
 
-
-	for (int i = v + 1; i < 26; i++) {
-		if (visit[i] != 1 && alphaCnt[i] != 0) dfs(i, d + 1);
-	}
-
-	visit[v] = 0;	// backtracking
+	return answer;
 
 }
 
-
-int main() {
-
-	char input[15];
-	cin >> n >> k;
-	for (int i = 0; i < n; i++) {
-		string w;
-		cin >> w;   //1단어 입력
-		wordList.push_back(w);
-	}
-
-    int flag[26] = { 0, };
-	for (int i = 0; i < wordList.size(); i++) {
-		int idx = -1;
-		int ch_int = 0;
-		while (wordList[i][++idx] != '\0') {
-
-			//cout << wordList[i].word[idx] << " ";
-			ch_int = wordList[i][idx] - 'a';	// 아스키 char -> int 값으로 전환('a' - > 0)
-			if(flag[ch_int] != 1){
-                flag[ch_int] = 1;	// 해당 알파벳이 있는 단어라는 표시
-                allnum++;
-            }
-		}
-		for (int i = 0; i < 26; i++) {
-			if (flag[i] == 1) alphaCnt[i]++;
-			alphaTypes[i] = i;
-		}
-		//cout << endl;
-
-	}
-
-		k = k - 5;
-		visit['a' - 'a'] = 1;
-		visit['n' - 'a'] = 1;
-		visit['t' - 'a'] = 1;
-		visit['i' - 'a'] = 1;
-		visit['c' - 'a'] = 1;
-
-	for (int i = 0; i < 26; i++) {
-		if (alphaCnt[i] > 0 && visit[i] != 1) {
-			dfs(i, 1);
-		}
-	}
-
-    // cout<<k<<n<<"a"<<allnum-5<<endl;
-    if(allnum-5<=k)
-        cout<<n;
-    else
-        cout << maxValue << endl;
-
-	int wait = 0;
-	cin >> wait;
-	return 0;
+int main(){
+    vector<vector<int>> jobs ={{0,3},{1,9},{2,6}};
+    cout<<solution(jobs);
 }
