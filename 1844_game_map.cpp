@@ -1,6 +1,6 @@
-#include<vector>
-#include<queue>
-#include<iostream>
+#include <vector>
+#include <queue>
+#include <iostream>
 using namespace std;
 int arrr[4]={0,0,1,-1};
 int arrc[4]={1,-1,0,0};

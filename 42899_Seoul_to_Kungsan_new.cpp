@@ -2,7 +2,8 @@
 #include<algorithm>
 #include<iostream>
 using namespace std;
-int chache[101][101];
+vector<vector<int>> chache;
+
 int max(int a, int b){
 	if(a>b)return a;
 	else return b;
@@ -16,18 +17,18 @@ int reculsive(int k,int n, int x, int t, vector<vector<int>> *travel){
 	if(chache[x][t]!=-1)
 		return chache[x][t];
 	
-	chache[x][t] = max((*travel)[x-1][1]+reculsive(k,n,x+1,t+(*travel)[x-1][0],&(*travel)),(*travel)[x-1][3]+reculsive(k,n,x+1,t+(*travel)[x-1][2],&(*travel)));
-	
+	chache[x][t] = max((*travel)[x-1][1]+reculsive(k,n,x+1,t+(*travel)[x-1][0],travel),(*travel)[x-1][3]+reculsive(k,n,x+1,t+(*travel)[x-1][2],travel));
 	return chache[x][t];
 }
 
 int solution(int K, vector<vector<int>> travel) {
-
 	int n= travel.size()+1;
 	for(int i=0; i<n+1; i++){
+		vector<int> a;
 		for(int j=0; j<K+1; j++){
-			chache[i][j]=-1;
+			a.push_back(-1);
 		}
+		chache.push_back(a);
 	}
 	return reculsive(K,n,1,0, &travel);
 } 
