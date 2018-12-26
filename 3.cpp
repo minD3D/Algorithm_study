@@ -13,11 +13,10 @@ int main(){
         string a;
         cin>>a;
         arr.push_back(make_pair(a,i));
-        res.push_back('a');
+        res.push_back(a);
     }
 
     sort(arr.begin(),arr.end());
-    cout<<endl;
     for(int i=0; i<arr.size()-1; i++){     
         if(arr[i].first==arr[i+1].first){
             res[arr[i].second]='P';
@@ -40,7 +39,7 @@ int main(){
 // aba
 // aba
 // abab
-// ba
-// baba
+//  ba
+//  baba
 
 // SPPSPSPS
