@@ -1,40 +1,37 @@
-#define _CRT_SECURE_travel.size()O_WARtravel.size()Itravel.size()GS
-#include<stdio.h>
-#include<math.h>
 #include<vector>
-
-int max(int a, int b) {
-	return (a > b) ? a : b;
+#include<algorithm>
+#include<iostream>
+using namespace std;
+int chache[101][101];
+int max(int a, int b){
+	if(a>b)return a;
+	else return b;
 }
+
+int reculsive(int k,int n, int x, int t, vector<vector<int>> *travel){
+	if(t>k)
+		return -1000000000;
+	if(x==n)
+		return 0;
+	if(chache[x][t]!=-1)
+		return chache[x][t];
+	
+	chache[x][t] = max((*travel)[x-1][1]+reculsive(k,n,x+1,t+(*travel)[x-1][0],&(*travel)),(*travel)[x-1][3]+reculsive(k,n,x+1,t+(*travel)[x-1][2],&(*travel)));
+	
+	return chache[x][t];
+}
+
 int solution(int K, vector<vector<int>> travel) {
-	int k, cu, prev, maxV = 0;
-	
-	dp[1][travel[1][0]] = travel[1][1];
-	dp[1][travel[1][2]] = Max(dp[1][travel[1][2]],travel[1][3]);
-	
-	for (int n = 2; n <= travel.size(); n++) {
-		cu = n & 1; 
-		prev = (n - 1) & 1;
-		memset(dp[cu], 0, sizeof(dp[cu]));
-		
-		for (int k = travel[n][0]; k <= K; k++) {
-			if (dp[prev][k - travel[n][0]]) {
-				dp[cu][k] = Max(dp[cu][k], dp[prev][k - travel[n][0]] + travel[n][1]);
-			}
-		}
-		
-		for (k = travel[n][2]; k <= K; k++) {
-			if (dp[prev][k - travel[n][2]]) {
-			dp[cu][k] = Max(dp[cu][k], dp[prev][k - travel[n][2]] + travel[n][3]); 
-			}
+
+	int n= travel.size()+1;
+	for(int i=0; i<n+1; i++){
+		for(int j=0; j<K+1; j++){
+			chache[i][j]=-1;
 		}
 	}
-	
-	cu = travel.size() & 1;
-	for (k = 1; k <= K; k++) {
-		maxV = Max(maxV, dp[cu][k]);
-	}
-	
-	return maxV;
-	
+	return reculsive(K,n,1,0, &travel);
 } 
+
+int main(){
+    cout<<solution(3000,{{1000, 2000, 300, 700}, {1100, 1900, 400, 900}, {900, 1800, 400, 700}, {1200, 2300, 500, 1200}})<<endl;
+}
