@@ -6,6 +6,7 @@ Probability
 
 
 01. Introduction
+
     Overview
     - Supervised learning
         - regression
@@ -23,6 +24,7 @@ Probability
         - Non clustering
 
 02. Linear Regression
+
         집값을 예측하는 상황
         정답이 존재하는 상황이므로 Supervised learning 이다.
         이때 결과에 선형 관계가 존재할 때 Linear regression 이라 할 수 있다.
@@ -37,6 +39,7 @@ Probability
             오차값의 합을 계산한 것
 
 03. Logistic Regression
+    
     Gradient descent (기울기 강하)
         hypothesis function의 최적 parameter 를 찾는 방법
         상수값을 바꿔가며서 최소 오차에 가까운 값을 찾는다.
@@ -45,6 +48,7 @@ Probability
         여러 변수를 이용한 추정
 
 04. Regularization
+        
         Overfitting
         Feature가 너무 많으면 hypothesis function 이 복잡해진다. 이럴 경우 트레이닝 셋과 매우 유사한 모델을 만들 수 는 있지만 너무 유사하면 새로운 데이터를 예측할 경우 실패할 수 있다. 
         
