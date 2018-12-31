@@ -2,11 +2,11 @@
 -----------
 
 1. 재귀호출, 백트래킹
-
+DONE
 2. 그리디
-
+DONE
 3. 다이나믹 (Dynamic Programming)
-
+DONE
 4. 기하 알고리즘
     - 내부-외부 판별
     - 단순 닫힌 경로
@@ -48,9 +48,9 @@
 1. 검색 (이분검색, 이진검색트리)
     - 여기서 이진검색트리의 최악의 경우 시간복잡도를 줄이기 위해서 AVL Tree가 구현
       레드블랙트리는 AVL의 일종
- 
+DONE
 2. 스택, 큐
-
+DONE
 3. Deque (Double Ended Queue) 
 
 4. 링크드리스트 (Linked List)
@@ -74,10 +74,10 @@
    - Dijkstra (다익스트라)
    - Floyd (플로이드)
    - Bellman Ford (벨만포드)
-
+DONE
 9. 그래프 탐색
    - BFS(너비우선탐색), DFS(깊이우선탐색)
-
+DONE
 10. 위상정렬 (Topological Sort)
 
 11. 최대유량 알고리즘 (Maximum Flow Algorithm)
@@ -95,7 +95,7 @@
    - 최소 비용 채색 문제
    - 절점 찾기
    - Bridge 찾기
-
+DONE
 13. 강한 연결 성분 (Strongly Connected Components , 줄여서 SCC)
    - Kosaraju , Tarjan의 방법
 
