@@ -14,21 +14,37 @@ int solution(vector<int> left, vector<int> right) {
         int rsum=0;
         for(int j=0; j<right.size(); j++){
             int r=right[j];
-            if(r<l){
+            if(r<=l&&j<=i){
                 a.push_back(r);
                 rsum+=r;
             }
             else
                 a.push_back(0);
         }    
-        maxsum= rsum>maxsum ? rsum : maxsum;
         dp.push_back(a);
     }
     
 
     // for(int i=0; i<left.size(); i++){   
     //     for(int j=0; j<right.size(); j++){
-    //         cout<<dp[i][j];
+    //         cout<<dp[i][j]<<" ";
+    //     }    
+    //     cout<<endl;
+    // }
+    //     cout<<endl;
+
+    for(int i=1; i<left.size(); i++){   
+        for(int j=1; j<right.size(); j++){
+            dp[i][j]+=(dp[i-1][j-1]>dp[i][j-1]) ? dp[i-1][j-1]:dp[i][j-1];
+            if(j==right.size()-1)
+                maxsum= dp[i][j]>maxsum ? dp[i][j] : maxsum;
+        }
+    
+    }
+
+    // for(int i=0; i<left.size(); i++){   
+    //     for(int j=0; j<right.size(); j++){
+    //         cout<<dp[i][j]<<" ";
     //     }    
     //     cout<<endl;
     // }
