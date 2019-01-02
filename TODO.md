@@ -120,7 +120,7 @@ Linked List
 - Detect Cycle in a Linked List - https://leetcode.com/problems/linked-list-cycle/
 
 - Merge Two Sorted Lists - https://leetcode.com/problems/merge-two-sorted-lists/
-
+DONE
 - Merge K Sorted Lists - https://leetcode.com/problems/merge-k-sorted-lists/
 
 - Remove Nth Node From End Of List - https://leetcode.com/problems/remove-nth-node-from-end-of-list/
@@ -132,11 +132,11 @@ Linked List
 Matrix
 
 - Set Matrix Zeroes - https://leetcode.com/problems/set-matrix-zeroes/
-
+DONE
 - Spiral Matrix - https://leetcode.com/problems/spiral-matrix/
 
 - Rotate Image - https://leetcode.com/problems/rotate-image/
-
+DONE
 - Word Search - https://leetcode.com/problems/word-search/
 
 
@@ -204,6 +204,7 @@ DONE
 - Top K Frequent Elements - https://leetcode.com/problems/top-k-frequent-elements/
 DONE
 - Find Median from Data Stream - https://leetcode.com/problems/find-median-from-data-stream/
+DONE
 
 
 알고리즘 종류
@@ -262,7 +263,7 @@ DONE
 3. Deque (Double Ended Queue) 
 
 4. 링크드리스트 (Linked List)
-
+DONE
 5. 힙 구조
    - Binary Heap
    - Binomial Heap
