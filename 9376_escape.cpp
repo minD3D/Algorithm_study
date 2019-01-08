@@ -4,74 +4,84 @@
 
 using namespace std;
 vector<vector<int>> board;
-vector<vector<int>> board_s;
+vector<vector<int>> board2;
+bool visit[101][101];
+bool visit2[101][101];
 pair<int,int> pin[2];
 int addr[4]={0,0,1,-1};
 int addc[4]={1,-1,0,0};
 int t_min=100000;
-bool is_first_open_door_func;
-//open_door_func 
-void open_door_func(int fr, int fc, int sr, int sc, int total){
-    // int fsb=board[fr][fc];
-    // int ssb=board[sr][sc];
-    // board[fr][fc]=-1;
-    // board[sr][sc]=-1;
-    if(fr==0||fc==0||fr==board.size()-1||fc==board[0].size()-1){
-
-        if(sr==0||sc==0||sr==board.size()-1||sc==board[0].size()-1){
-            cout<<total<<"!!!!"<<endl;
-            return;
+bool is_first_dfs;
+//dfs 
+void dfs2(int r, int c, int total){
+    // cout<<r<<c<<endl;
+    // cout<<"t"<<total<<endl;
+    visit2[r][c]=true;
+    if(r==0||c==0||r==board2.size()-1||c==board2[0].size()-1){
+        if(t_min>total){
+            t_min=total;
         }
+        return;
     }
-    for(int i=0; i<4; i++){
-        int tfr=fr+addr[i];
-        int tfc=fc+addc[i];
-        if(tfr>=0&&tfc>=0&&tfr<board.size()&&tfc<board[0].size()){
-            for(int j=0; j<4; j++){
-                int tsr=sr+addr[j];
-                int tsc=sc+addc[j];
-                
-                if(tsr>=0&&tsc>=0&&tsr<board.size()&&tsc<board[0].size()){
-                    if(board[tfr][tfc]>=0&&board[tsr][tsc]>=0){
-                        cout<<tfr<<tfc;
-                        cout<<tsr<<tsc<<endl;
-                    
-                        if(board[tfr][tfc]==1){
-                            if(board[tsr][tsc]==1){
-                                board[tfr][tfc]=0;
-                                board[tsr][tsc]=0;
-                                open_door_func(tfr,tfc,tsr,tsc,total+2);
-                                board[tfr][tfc]=1;
-                                board[tsr][tsc]=1;                           
-                            }
-                            else{
-                                board[tfr][tfc]=0;
-                                open_door_func(tfr,tfc,tsr,tsc,total+1);
-                                board[tfr][tfc]=1;   
-                            }
-                            // board[tfr][tfc]=0;
-                            // open_door_func(tr,tc,total+1);
-                            // board[tr][tc]=1;
-                            // open_door_func(tr,tc,total);
-                        }
-                        else{
-                            if(board[tsr][tsc]==1){
-                                board[tsr][tsc]=0;
-                                open_door_func(tfr,tfc,tsr,tsc,total+1);
-                                board[tsr][tsc]=1;   
-                            }
-                            else{
-                                open_door_func(tfr,tfc,tsr,tsc,total);
-                            }
-                        }
+    else{
+        for(int i=0; i<4; i++){
+            int tr=r+addr[i];
+            int tc=c+addc[i];
+            if(tr>=0&&tc>=0&&tr<board2.size()&&tc<board2[0].size()){
+                if(board2[tr][tc]>=0&&!visit2[tr][tc]){
+                    if(board2[tr][tc]==1){
+                        int tn=board2[r][c];
+                        board2[tr][tc]=0;
+                        // cout<<"open"<<tr<<tc<<total+1<<endl;
+                        dfs2(tr,tc,total+1);
+                        board2[tr][tc]=1;
                     }
+                    else
+                        dfs2(tr,tc,total);
                 }
-            }            
+
+            }
         }
     }
-    // board[fr][fc]=fsb;
-    // board[sr][sc]=ssb;
+    visit2[r][c]=false;
+    return;
+}
 
+void dfs(int r, int c, int total){
+    // cout<<r<<c<<endl;
+    visit[r][c]=true;
+    if(r==0||c==0||r==board.size()-1||c==board[0].size()-1){
+        // cout<<"!!!!!!!!!!!!"<<total<<endl;
+        board2=board;
+        for(int i=0; i<100; i++){
+            for(int j=0; j<100; j++){
+                visit2[i][j]=false;
+            }
+        }
+        dfs2(pin[1].first,pin[1].second,total);
+        return;
+    }
+    else{
+        for(int i=0; i<4; i++){
+            int tr=r+addr[i];
+            int tc=c+addc[i];
+            if(tr>=0&&tc>=0&&tr<board.size()&&tc<board[0].size()){
+                if(board[tr][tc]>=0&&!visit[tr][tc]){
+                    if(board[tr][tc]==1){
+                        int tn=board[r][c];
+                        board[tr][tc]=0;
+                        // cout<<"open"<<tr<<tc<<total+1<<endl;
+                        dfs(tr,tc,total+1);
+                        board[tr][tc]=1;
+                    }
+                    else
+                        dfs(tr,tc,total);
+                }
+
+            }
+        }
+    }
+    visit[r][c]=false;
     return;
 }
 
@@ -106,12 +116,13 @@ int main(){
                     }    
                 }
                 a.push_back(c);
+
             }
             tboard.push_back(a);
         }
-
         board.swap(tboard);
-        open_door_func(pin[0].first,pin[0].second,pin[1].first,pin[1].second,0);
-
+        t_min=100000;
+        dfs(pin[0].first,pin[0].second,0);   
+        cout<<t_min<<endl;     
     }
 }
