@@ -1,49 +1,53 @@
-#include <iostream>
-#include <vector>
+#include<iostream>
+#include<map>
+#include<queue>
 using namespace std;
-// Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-// You may assume that each input would have exactly one solution, and you may not use the same element twice.
 class Solution {
+private:
+    vector<vector<int>> board;
+    int rs,cs;
+        
 public:
-    void setZeroes(vector<vector<int>>& matrix) {
-        int rs=matrix.size();
-        int cs=matrix[0].size();
-        bool horizontal[rs];
-        bool vertical[cs];
-        for(int i=0; i<cs; i++){
-            for(int j=0; j<rs; j++){
-                if(matrix[i][j]==0){
-                    vertical[i]=false;
-                    horizontal[j]=false;                    
+    void setroute(int r, int c){
+        int arrr[4]={0,0,1,-1};
+        int arrc[4]={1,-1,0,0};
+        for(int i=0; i<4; i++){
+            int n=1;
+            while(1){
+                int tr=r+arrr[i]*n;
+                int tc=c+arrc[i]*n;
+                if(tr<rs&&tc<cs&&tr>=0&&tc>=0){
+                    board[tr][tc]=0;
+                    n+=1;
                 }
+                else
+                    break;
             }
         }
 
-        for(int i=0; i<cs; i++){
-            for(int j=0; j<rs; j++){
-                if(!vertical[i]||!horizontal[j])
-                    matrix[i][j]=0;
+        return;
+    }
+    void setZeroes(vector<vector<int>>& matrix) {
+        board= matrix;
+        int arrr[4]={0,0,1,-1};
+        int arrc[4]={1,-1,0,0};
+        rs=matrix.size();
+        cs=matrix[0].size();
+        
+        //O(mn)
+        for(int i=0; i<rs; i++){
+            for(int j=0; j<cs; j++){
+                if(matrix[i][j]==0){
+                    setroute(i,j);   
+                }
             }
-        }
+        }   
+        matrix=board; 
     }
 };
 
 int main(){
+    vector<vector<int>> b={{0,1,1,0},{1,1,1,1},{1,1,1,1}};
     Solution a;
-    vector<int> b;
-    b.push_back(1);
-    b.push_back(1);
-    b.push_back(1);
-    vector<int> c;
-    c.push_back(1);
-    c.push_back(0);
-    c.push_back(1);
-
-    vector< vector<int> > d;
-    d.push_back(b);
-    d.push_back(c);
-    d.push_back(b);
-    
-    a.setZeroes(&d);
-
+    a.setZeroes(b);
 }
