@@ -1,5 +1,5 @@
 #include <iostream>
-#include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -13,10 +13,38 @@ struct TreeNode {
 /**
  * Definition for a binary tree node.
  */
+ //use stack and dfs
 class Solution {
 public:
-    int maxPathSum(TreeNode* root) {
+    int maxval(int a, int b){
+        return a>=b ? a : b;
+    }
+    int dfs(TreeNode* node, int sum){
+        if(node==nullptr)return sum;
         
+        int maxmrl=sum;
+        int ml,mr,l,r;
+        //me+left
+        if(node->left!=nullptr){
+            ml=dfs(node->left,sum+node->left->val);
+            l=dfs(node->left,sum);
+            maxmrl=max(l,ml)>maxmrl ? max(l,ml) : maxmrl;
+        }
+        //me+right
+        if(node->right!=nullptr){
+            mr=dfs(node->right,sum+node->right->val);
+            r=dfs(node->right,sum);
+            maxmrl=max(mr,r)>maxmrl ? max(mr,r) : maxmrl;
+        }
+        //me+left+right
+        if(node->right!=nullptr&&node->left!=nullptr){
+            int mrl=ml+mr-node->val;
+            maxmrl=mrl>maxmrl ? mrl : maxmrl;
+        }
+        return maxmrl;
+    }
+    int maxPathSum(TreeNode* root) {
+        return dfs(root, root->val);
     }
 };
 
