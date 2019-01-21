@@ -24,7 +24,7 @@ public:
             }
         }
         return false;
-    }
+    };
     bool exist(vector<vector<char>>& board, string word) {
         //bfs
         if(board.size()==0)return false;
