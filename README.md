@@ -131,10 +131,10 @@ Graph
 Interval
 ---------
 
- = Insert Interval 
+ => Insert Interval 
 - https://leetcode.com/problems/insert-interval/
 
- = Merge Intervals 
+ => Merge Intervals 
 - https://leetcode.com/problems/merge-intervals/
 
  = Non-overlapping Intervals 
