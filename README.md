@@ -73,9 +73,6 @@ Dynamic Programming
  = Longest Increasing Subsequence 
 - https://leetcode.com/problems/longest-increasing-subsequence/
 
- = Longest Common Subsequence 
-- 
-
  = Word Break Problem 
 - https://leetcode.com/problems/word-break/
 
@@ -280,7 +277,7 @@ Heap
  => Top K Frequent Elements 
 - https://leetcode.com/problems/top-k-frequent-elements/
 
- = Find Median from Data Stream 
+ => Find Median from Data Stream 
 - https://leetcode.com/problems/find-median-from-data-stream/
 
 
