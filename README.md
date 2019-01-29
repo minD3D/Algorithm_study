@@ -164,10 +164,10 @@ Linked List
  = Merge K Sorted Lists 
 - https://leetcode.com/problems/merge-k-sorted-lists/
 
- = Remove Nth Node From End Of List 
+ => Remove Nth Node From End Of List 
 - https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
- = Reorder List 
+ => Reorder List 
 - https://leetcode.com/problems/reorder-list/
 
 
@@ -181,7 +181,7 @@ Matrix
  => Spiral Matrix 
 - https://leetcode.com/problems/spiral-matrix/
 
- = Rotate Image 
+ => Rotate Image 
 - https://leetcode.com/problems/rotate-image/
 
  = Word Search 
