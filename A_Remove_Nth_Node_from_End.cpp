@@ -10,26 +10,28 @@ struct ListNode {
 };
 class Solution {
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        vector<ListNode*> vector;
-        ListNode* cur=head;
-        while(cur!=nullptr){
-            vector.push_back(cur);
-            cur=cur->next;
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        vector<int> vector;
+        for(int i=0; i<lists.size(); i++){//O(n)
+            ListNode* cur=lists[i];
+            while(cur!=nullptr){
+                vector.push_back(cur->val);
+                cur=cur->next;
+            }
         }
-        
-        if(n==vector.size()){
-            if(vector.size()==1)
-                head=nullptr;
-            else
-                head=vector[1];
+        if(vector.size()==0)return nullptr;
+        sort(vector.begin(),vector.end());//O(nlogn)
+        ListNode* pnt=new ListNode(0);
+        ListNode* res=pnt;
+        for(int i=0; i<vector.size();i++){//O(n)
+            pnt->val=vector[i];
+            if(i!=vector.size()-1)
+                pnt->next=new ListNode(0);
+            pnt=pnt->next;
         }
-        else if(n==1){
-            vector[vector.size()-2]->next=nullptr;
-            
-        }
-        else
-            vector[vector.size()-1-n]->next=vector[vector.size()-n+1];
-        return head;
+        // pnt=nullptr;
+        return res;
     }
 };
+
+//O(n+nlogn)
