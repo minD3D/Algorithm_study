@@ -7,6 +7,10 @@ For the time-constrained, here's a list of the best LeetCode questions that teac
 => DONE
 = YET
 
+Topological sort
+-----------
+
+
 Array
 -----
  => Two Sum 
@@ -102,7 +106,7 @@ Graph
  => Clone Graph 
 - https://leetcode.com/problems/clone-graph/
 
- = Course Schedule 
+ => Course Schedule 
 - https://leetcode.com/problems/course-schedule/
 
  = => Pacific Atlantic Water Flow 
