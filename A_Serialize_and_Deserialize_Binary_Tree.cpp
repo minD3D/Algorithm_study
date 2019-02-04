@@ -66,10 +66,11 @@ public:
                 }
                 else{
                     tmp*=10;
-                    tmp+=(data[i]-'0');
+                    tmp+=(data[i]);
                 }
             }
         }
+        return result_Tree;
     }
 };
 
