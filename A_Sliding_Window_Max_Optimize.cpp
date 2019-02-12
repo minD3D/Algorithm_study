@@ -1,9 +1,6 @@
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& num, int k) {
-        vector<int> res;
-        vector<int> nums;
-        nums=num;
         if(nums.size()==0)return res;
         vector<pair<int,int>> order;
         for(int i=0; i<nums.size(); i++){
